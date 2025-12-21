@@ -1,0 +1,10 @@
+{
+  "name": "hotel-booking-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node backend/server.js",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "powershell -NoProfile -Command \"Start-Process -FilePath './frontend/index.html'\""
+  }
+}
