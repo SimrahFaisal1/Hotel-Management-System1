@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "backend",
   "version": "1.0.0",
   "description": "",
@@ -21,14 +20,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
-=======
-  "name": "hotel-booking-system",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node backend/server.js",
-    "start:backend": "cd backend && npm start",
-    "start:frontend": "powershell -NoProfile -Command \"Start-Process -FilePath './frontend/index.html'\""
->>>>>>> c78cf4d410484e2999e82f8f322530c50d0dd2b9
   }
 }
