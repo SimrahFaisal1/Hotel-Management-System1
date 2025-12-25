@@ -1,7 +1,4 @@
-// Load environment variables from .env.local
 require('dotenv').config();
-require('dotenv').config({ path: '.env.local' });
-
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./db');
@@ -18,16 +15,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 // Connect to MongoDB
-console.log('Loaded MONGODB_URI:', process.env.MONGODB_URI);
-
 connectDB();
-
-// Optional: confirm Atlas connection
-const mongoose = require('mongoose');
-mongoose.connection.once('open', () => console.log('🌐 Connected to MongoDB Atlas!'));
-mongoose.connection.on('error', (err) => console.error('❌ MongoDB connection error:', err));
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -38,15 +27,15 @@ app.use('/api/bookings', bookingRoutes);
 const frontendPath = path.join(__dirname, '..', 'frontend');
 app.use(express.static(frontendPath));
 
-// Serve index.html for root and any non-API GET requests (SPA support)
+// Serve index.html for root and for any non-API GET requests (SPA support)
 app.get('/', (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
+
 app.get(/^\/(?!api).*/, (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
-// Server configuration
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || 'localhost';
 
@@ -55,7 +44,7 @@ const server = app.listen(PORT, () => {
   console.log(`\n🚀 Server running at ${base}`);
   console.log(`🔗 API base: ${base}/api`);
   console.log(`\n📖 Open ${base} in your browser to view the frontend.\n`);
-
+  
   console.log('═══════════════════════════════════════════════════════');
   console.log('📝 DEMO CREDENTIALS FOR TESTING');
   console.log('═══════════════════════════════════════════════════════');
