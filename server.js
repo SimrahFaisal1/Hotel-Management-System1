@@ -1,8 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
-
-// Import DB connection
 const connectDB = require("./db");
 
 // Import routes
@@ -22,16 +19,7 @@ app.use(express.json());
    Database Connection
 ====================== */
 console.log("Loaded MONGO_URI:", process.env.MONGO_URI);
-
 connectDB();
-
-mongoose.connection.once("open", () => {
-  console.log("🌐 Connected to MongoDB Atlas!");
-});
-
-mongoose.connection.on("error", (err) => {
-  console.error("❌ MongoDB connection error:", err);
-});
 
 /* ======================
    Routes
@@ -48,6 +36,6 @@ app.get("/api", (req, res) => {
 });
 
 /* ======================
-   Export app (NO listen)
+   Export app (serverless)
 ====================== */
 module.exports = app;
